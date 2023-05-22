@@ -9,7 +9,7 @@ end
 	attributes = Dict("class"=>"paragraph", "id"=>1) 
 	paragraph = tag("p")(attributes)("First!")
 	@test occursin("class=\"paragraph\"", paragraph)
-	@test occursin("class=\"paragraph\"", paragraph)
+	@test occursin("id=\"1\"", paragraph)
 	@test occursin(">First!<", paragraph)
 end
 
