@@ -2,3 +2,6 @@ name = "JME"
 uuid = "5a5e569b-92db-4d44-aac6-f47645cc6940"
 authors = ["Charlie Paterson <Charlieed.Paterson@googlemail.com>"]
 version = "0.1.0"
+
+[deps]
+PkgTemplates = "14b8a8f1-9102-5b29-a752-f990bacb7fe1"
