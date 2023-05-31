@@ -1,16 +1,17 @@
 
-Attrs = Dict{String}
-MaybeAttrs = Union{Attrs, Nothing}
-MaybeAny = Union{Any, Nothing}
+Attr = Pair{String, <:Any}
+Content = Any
 
 function tag(name::String)
 
-	function with_attrs(attr_dict::MaybeAttrs=nothing)
-		attrs = attr_dict == nothing ? "" : _attr_str(attr_dict)
+	function with_attrs(attrs::Attr...)
+		attr_str = isempty(attrs) ? "" : _attr_str(attrs)
 
-		function with_content(content::MaybeAny...)
-			if isempty(content) return "<$(name)$(attrs)/>" end
-			return "<$(name)$(attrs)>$(join(content,""))</$(name)>"
+		function with_content(content::Content...)
+			if isempty(content) 
+				return "<$(name)$(attr_str)/>" 
+			end
+			return "<$(name)$(attr_str)>$(join(content,""))</$(name)>"
 		end
 
 		return with_content
@@ -20,8 +21,8 @@ function tag(name::String)
 end
 
 
-_attr_str(attrs::Attrs) = string(
+_attr_str(attrs) = string(
 	" ",
-	join(["$(key)=\"$(attrs[key])\"" for key in keys(attrs)], " ")
+	join(["$(attr.first)=\"$(attr[end])\"" for attr in attrs], " ")
 )
 

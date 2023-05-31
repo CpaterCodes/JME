@@ -19,9 +19,13 @@ But of course, what does that even mean? Here is a visual example:
 
 ```julia
 div = tag("div")
-attributes = Dict("class"=>"answers", "id" => "42")
 
-meaning_of_life = div(attributes)("The meaning of life!") 
+meaning_of_life = div(
+    "class"=>"answers", 
+    "id" => "42"
+)(
+    "The meaning of life!"
+) 
 ```
 
 The `meaning_of_life` in question would in turn be:

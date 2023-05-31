@@ -17,7 +17,7 @@ end
 	main, p = tag("main"), tag("p");
 	expected::String = "<main><p id=\"1\">1</p><p id=\"2\">2</p></main>"
 	actual::String = main()(
-		[p(Dict("id"=>n))(n) for n in 1:2]...
+		[p("id"=>n)(n) for n in 1:2]...
 	)
 
 	@test expected == actual
